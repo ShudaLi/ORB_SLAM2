@@ -44,6 +44,7 @@ class KeyFrameDatabase;
 class LoopClosing
 {
 public:
+	EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
     typedef pair<set<KeyFrame*>,int> ConsistentGroup;    
     typedef map<KeyFrame*,g2o::Sim3,std::less<KeyFrame*>,
@@ -79,8 +80,6 @@ public:
     void RequestFinish();
 
     bool isFinished();
-
-    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
 protected:
 
