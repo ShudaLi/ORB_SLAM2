@@ -182,6 +182,7 @@ cv::Mat System::TrackRGBD(const cv::Mat &im, const cv::Mat &depthmap, const doub
             // Wait until Local Mapping has effectively stopped
             while(!mpLocalMapper->isStopped())
             {
+				;
                 //usleep(1000);
             }
 
@@ -305,7 +306,8 @@ void System::Shutdown()
     if(mpViewer)
     {
         mpViewer->RequestFinish();
-        while(!mpViewer->isFinished())
+		while (!mpViewer->isFinished())
+			;
             //usleep(5000);
     }
 
