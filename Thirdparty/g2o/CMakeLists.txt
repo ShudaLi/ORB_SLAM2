@@ -46,6 +46,7 @@ ENDIF(APPLE)
 
 set(g2o_INCLUDE_DIR ${g2o_SOURCE_DIR}/g2o CACHE PATH "g2o include directory" FORCE)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /bigobj")
 
 # There seems to be an issue with MSVC8
 # see http://eigen.tuxfamily.org/bz/show_bug.cgi?id=83

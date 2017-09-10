@@ -64,7 +64,7 @@ int main(int argc, char **argv)
     cv::Mat imLeft, imRight;
     for(int ni=0; ni<nImages; ni++)
     {
-        // Read left and right images from file
+        // Read image and depthmap from file
         imLeft = cv::imread(vstrImageLeft[ni],CV_LOAD_IMAGE_UNCHANGED);
         imRight = cv::imread(vstrImageRight[ni],CV_LOAD_IMAGE_UNCHANGED);
         double tframe = vTimestamps[ni];
@@ -82,8 +82,8 @@ int main(int argc, char **argv)
         std::chrono::monotonic_clock::time_point t1 = std::chrono::monotonic_clock::now();
 #endif
 
-        // Pass the images to the SLAM system
-        SLAM.TrackStereo(imLeft,imRight,tframe);
+        // Pass the image to the SLAM system
+        SLAM.TrackStereo(imLeft,imRight,tframe);        
 
 #ifdef COMPILEDWITHC11
         std::chrono::steady_clock::time_point t2 = std::chrono::steady_clock::now();
@@ -103,7 +103,8 @@ int main(int argc, char **argv)
             T = tframe-vTimestamps[ni-1];
 
         if(ttrack<T)
-            usleep((T-ttrack)*1e6);
+			std::this_thread::sleep_for(std::chrono::milliseconds(1));
+		//usleep((T - ttrack)*1e6);
     }
 
     // Stop all threads

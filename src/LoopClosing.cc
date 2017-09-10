@@ -114,7 +114,7 @@ bool LoopClosing::DetectLoop()
     }
 
     //If the map contains less than 10 KF or less than 10 KF have passed from last loop detection
-    if( mpCurrentKF->mnId < mLastLoopKFid+10 )
+    if(mpCurrentKF->mnId<mLastLoopKFid+10)
     {
         mpKeyFrameDB->add(mpCurrentKF);
         mpCurrentKF->SetErase();
@@ -570,8 +570,6 @@ void LoopClosing::CorrectLoop()
     // Optimize graph
     Optimizer::OptimizeEssentialGraph(mpMap, mpMatchedKF, mpCurrentKF, NonCorrectedSim3, CorrectedSim3, LoopConnections, mbFixScale);
 
-    mpMap->InformNewBigChange();
-
     // Add loop edge
     mpMatchedKF->AddLoopEdge(mpCurrentKF);
     mpCurrentKF->AddLoopEdge(mpMatchedKF);
@@ -742,8 +740,6 @@ void LoopClosing::RunGlobalBundleAdjustment(unsigned long nLoopKF)
                     pMP->SetWorldPos(Rwc*Xc+twc);
                 }
             }
-
-            mpMap->InformNewBigChange();
 
             mpLocalMapper->Release();
 

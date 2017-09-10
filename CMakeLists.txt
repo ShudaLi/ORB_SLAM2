@@ -17,9 +17,9 @@ include(CheckCXXCompilerFlag)
 #CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
 #CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
 #if(COMPILER_SUPPORTS_CXX11)
-   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-   add_definitions(-DCOMPILEDWITHC11)
-   message(STATUS "Using flag -std=c++11.")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+add_definitions(-DCOMPILEDWITHC11)
+message(STATUS "Using flag -std=c++11.")
 #elseif(COMPILER_SUPPORTS_CXX0X)
 #   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 #   add_definitions(-DCOMPILEDWITHC0X)
@@ -35,6 +35,7 @@ IF(WIN32)
 	add_definitions("-DWINDOWS")
 	add_definitions("-DORBSLAM_EXPORT")
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /bigobj")
 ENDIF()
 
 set(OpenCV_STATIC OFF)
@@ -51,8 +52,11 @@ ${PROJECT_SOURCE_DIR}/include
 ${EIGEN3_INCLUDE_DIR}
 ${Pangolin_INCLUDE_DIRS}
 ${OpenCV_INCLUDE_DIRS}
+#c:/all_libs/DBoW2/include/
+#C:/all_libs/DLib/include
 ${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/dbow2
 ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/g2o
+
 #${PYTHON_INCLUDE_DIR}
 )
 
@@ -72,6 +76,7 @@ ${EIGEN3_LIBS}
 #${PYTHON_LIBRARY}
 ${Pangolin_LIBRARIES}
 ${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/bin/Release/dbow2.lib
+#c:/all_libs/DBoW2/lib/DBoW2.lib
 ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/bin/Release/g2o.lib
 )
 

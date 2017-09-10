@@ -67,7 +67,7 @@ public:
 
     // This function will run in a separate thread
     void RunGlobalBundleAdjustment(unsigned long nLoopKF);
-	// Global Bundle Adjustment (GBA)
+
     bool isRunningGBA(){
         unique_lock<std::mutex> lock(mMutexGBA);
         return mbRunningGBA;
@@ -140,9 +140,6 @@ protected:
 
     // Fix scale in the stereo/RGB-D case
     bool mbFixScale;
-
-
-    bool mnFullBAIdx;
 };
 
 } //namespace ORB_SLAM
