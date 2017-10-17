@@ -47,6 +47,7 @@ find_package(Pangolin REQUIRED)
 
 
 include_directories(
+	c:/all_libs/glew-2.1.0/include
 ${PROJECT_SOURCE_DIR}
 ${PROJECT_SOURCE_DIR}/include
 ${EIGEN3_INCLUDE_DIR}
@@ -59,7 +60,9 @@ ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/g2o
 
 #${PYTHON_INCLUDE_DIR}
 )
-
+link_directories(
+C:/all_libs/glew-2.1.0/lib
+	)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 
 file(GLOB headers "include/*.h") #_RECURSE
